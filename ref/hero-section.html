@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMS 모듈러 데이터센터 - Hero Section</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Inter & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0047BA',
+                            blueHover: '#003399',
+                            slateDark: '#0F172A',
+                            accent: '#2563EB',
+                            grayText: '#475569'
+                        }
+                    },
+                    boxShadow: {
+                        'soft-pill': '0 4px 20px -2px rgba(0, 0, 0, 0.08)',
+                        'glow-subtle': '0 10px 30px -5px rgba(0, 71, 186, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth fade transition for carousel */
+        .slide-fade-enter {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+        .slide-fade-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
+
+    <!-- MAIN HERO SECTION START -->
+    <section class="relative min-h-[calc(100vh-80px)] w-full bg-gradient-to-b from-slate-100 via-white to-slate-50 flex items-center justify-center overflow-hidden py-16 px-4 sm:px-8 lg:px-16 border-b border-slate-200">
+        
+        <!-- Subtle Tech Grid & Ambient Glow Effects for Light Theme -->
+        <div class="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:28px_28px] opacity-50 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-100/60 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-sky-100/50 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <!-- Carousel Left Nav Arrow -->
+        <button id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous Slide" 
+            class="absolute left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-slate-200/90 bg-white/80 backdrop-blur-md text-slate-600 hover:text-slate-950 hover:bg-white hover:border-slate-400 shadow-md transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-blue">
+            <i data-lucide="chevron-left" class="w-6 h-6 stroke-[1.75]"></i>
+        </button>
+
+        <!-- Carousel Right Nav Arrow -->
+        <button id="nextBtn" onclick="changeSlide(1)" aria-label="Next Slide" 
+            class="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-slate-200/90 bg-white/80 backdrop-blur-md text-slate-600 hover:text-slate-950 hover:bg-white hover:border-slate-400 shadow-md transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-blue">
+            <i data-lucide="chevron-right" class="w-6 h-6 stroke-[1.75]"></i>
+        </button>
+
+        <!-- Hero Content Wrapper Grid -->
+        <div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
+
+            <!-- LEFT / CENTER: Product Image Stage (Columns 1-7) -->
+            <div class="lg:col-span-7 relative flex items-center justify-center order-2 lg:order-1 min-h-[320px] sm:min-h-[420px] lg:min-h-[520px]">
+                
+                <!-- Main Product Display Container -->
+                <div id="imageContainer" class="relative w-full flex items-center justify-center transition-all duration-500 transform">
+                    
+                    <!-- Floor Soft Natural Shadow -->
+                    <div class="absolute -bottom-6 w-4/5 h-12 bg-slate-900/10 rounded-[100%] blur-xl pointer-events-none"></div>
+
+                    <!-- Main Container MDC Image -->
+                    <img id="productImage" 
+                         src="container-mdc.png" 
+                         alt="HDMS Container Modular Data Center" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/1000x550/f1f5f9/0f172a?text=HDMS+Modular+Data+Center+Container';" 
+                         class="w-full h-auto max-h-[500px] object-contain drop-shadow-[0_15px_25px_rgba(15,23,42,0.15)] transition-all duration-500 transform hover:scale-[1.01]">
+                </div>
+            </div>
+
+            <!-- RIGHT: Typography & Action Section (Columns 8-12) -->
+            <div class="lg:col-span-5 flex flex-col justify-center order-1 lg:order-2 text-left space-y-6 lg:pl-4">
+                
+                <!-- Category Title & Headline -->
+                <div class="space-y-2">
+                    <span id="slideTag" class="text-brand-blue font-extrabold text-2xl sm:text-3xl lg:text-[34px] tracking-tight uppercase leading-tight">
+                        HDMS CONTAINER MDC
+                    </span>
+                    <p id="slideSubtitle" class="text-slate-900 font-bold text-xl sm:text-2xl lg:text-[26px] tracking-tight pt-1">
+                        고밀도 전력 & 정밀 쿨링 일체형 모듈
+                    </p>
+                </div>
+
+                <!-- Paragraph Text Description -->
+                <p id="slideDescription" class="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-lg">
+                    HDMS 컨테이너 데이터센터는 초고밀도 서버 랙, 고효율 냉각 설비, MEP 솔루션을 일체형 규격으로 제공하여 설치 부지의 제약 없이 극대화된 컴퓨팅 인프라를 빠르게 구축합니다.
+                </p>
+
+                <!-- Spec Mini Badges / Features Pills -->
+                <div id="featuresList" class="flex flex-wrap gap-2.5 pt-1">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-slate-200/90 text-slate-700 text-xs font-medium shadow-sm">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue"></i> 40ft All-in-One
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-slate-200/90 text-slate-700 text-xs font-medium shadow-sm">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue"></i> IP65 방수방진
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-slate-200/90 text-slate-700 text-xs font-medium shadow-sm">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue"></i> AI 고성능 AI클러스터 지원
+                    </span>
+                </div>
+
+                <!-- CTA Button (Pill Style) -->
+                <div class="pt-4">
+                    <a id="ctaButton" href="#product-details" 
+                       class="inline-flex items-center justify-center px-8 py-3 rounded-full border border-slate-300 bg-white hover:bg-slate-900 hover:text-white text-slate-800 font-medium text-sm sm:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue active:scale-95">
+                        제품소개
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Carousel Pagination Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
+            <button onclick="goToSlide(0)" class="dot-btn w-2.5 h-2.5 rounded-full bg-brand-blue transition-all duration-300" aria-label="Slide 1"></button>
+            <button onclick="goToSlide(1)" class="dot-btn w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Slide 2"></button>
+            <button onclick="goToSlide(2)" class="dot-btn w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Slide 3"></button>
+        </div>
+
+    </section>
+    <!-- MAIN HERO SECTION END -->
+
+    <!-- DEVELOPER HELPER PANEL -->
+    <div class="max-w-4xl mx-auto my-12 p-6 bg-white rounded-2xl shadow-sm border border-slate-200 text-slate-700">
+        <h3 class="font-bold text-slate-900 text-lg mb-2 flex items-center gap-2">
+            <i data-lucide="settings" class="w-5 h-5 text-brand-blue"></i> 개발자 사용 가이드 & 이미지 설정
+        </h3>
+        <p class="text-sm text-slate-500 mb-4">
+            현재 1번 슬라이드 이미지 경로가 <code class="bg-slate-100 text-brand-blue border border-slate-200 px-2 py-0.5 rounded text-xs font-mono">container-mdc.png</code> 로 설정되어 있습니다. 프로젝트 폴더의 실제 파일 경로에 맞게 지정하여 테스트할 수 있습니다.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+            <input type="text" id="customImgUrl" value="container-mdc.png" placeholder="이미지 파일명 또는 URL 입력 (예: ./assets/container-mdc.png)" class="flex-1 px-4 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+            <button onclick="applyCustomImage()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
+                이미지 경로 적용
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Data for modular data center slider items
+        const slides = [
+            {
+                tag: "HDMS CONTAINER MDC",
+                subtitle: "고밀도 전력 & 정밀 쿨링 일체형 모듈",
+                description: "HDMS 컨테이너 데이터센터는 초고밀도 서버 랙, 고효율 냉각 설비, MEP 솔루션을 일체형 규격으로 제공하여 설치 부지의 제약 없이 극대화된 컴퓨팅 인프라를 빠르게 구축합니다.",
+                image: "container-mdc.png",
+                features: ["40ft All-in-One", "IP65 방수방진", "AI 고성능 AI클러스터 지원"],
+                ctaText: "제품소개",
+                ctaLink: "#container-mdc"
+            },
+            {
+                tag: "HDMS COMPACT EDGE MDC",
+                subtitle: "도심형 & 소형 파워 엣지 데이터센터",
+                description: "협소한 공간이나 분산된 엣지 환경에 맞춤 설계된 컴팩트 모듈입니다. 표준 20ft 컨테이너 규격 내에 UPS 및 정밀 공조 시스템을 내장하여 최고의 기동성을 보장합니다.",
+                image: "https://placehold.co/1000x550/f8fafc/0f172a?text=Compact+20ft+Edge+MDC",
+                features: ["20ft Compact Size", "모바일 원격 모니터링", "무정전 전원 UPS 내장"],
+                ctaText: "제품소개",
+                ctaLink: "#edge-mdc"
+            },
+            {
+                tag: "HDMS LIQUID COOLING MDC",
+                subtitle: "액체 냉각 기반 AI & HPC 전용 데이터센터",
+                description: "차세대 수냉식 Direct-to-Chip 쿨링 솔루션을 적용하여 Rack당 최대 100kW 이상의 발열을 효율적으로 해소하며, AI 데이터 연산의 가동 효율을 극대화합니다.",
+                image: "https://placehold.co/1000x550/f1f5f9/0f172a?text=Liquid+Cooling+AI+MDC",
+                features: ["Direct Liquid Cooling", "100kW+ Rack Support", "탄소 배출 40% 절감"],
+                ctaText: "제품소개",
+                ctaLink: "#liquid-mdc"
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function updateSlideUI() {
+            const data = slides[currentSlide];
+
+            // Elements references
+            const imgEl = document.getElementById('productImage');
+            const tagEl = document.getElementById('slideTag');
+            const subtitleEl = document.getElementById('slideSubtitle');
+            const descEl = document.getElementById('slideDescription');
+            const featuresEl = document.getElementById('featuresList');
+            const ctaEl = document.getElementById('ctaButton');
+            const containerEl = document.getElementById('imageContainer');
+
+            // Apply smooth fade effect
+            containerEl.style.opacity = '0';
+            containerEl.style.transform = 'translateY(10px) scale(0.98)';
+
+            setTimeout(() => {
+                // Update Content
+                tagEl.textContent = data.tag;
+                subtitleEl.textContent = data.subtitle;
+                descEl.textContent = data.description;
+                ctaEl.textContent = data.ctaText;
+                ctaEl.href = data.ctaLink;
+
+                // Update Image
+                imgEl.src = data.image;
+
+                // Update Features Pills
+                featuresEl.innerHTML = data.features.map(f => `
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-slate-200/90 text-slate-700 text-xs font-medium shadow-sm">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-blue"></i> ${f}
+                    </span>
+                `).join('');
+                
+                // Re-initialize dynamic icons for updated HTML
+                lucide.createIcons();
+
+                // Fade back in
+                containerEl.style.opacity = '1';
+                containerEl.style.transform = 'translateY(0) scale(1)';
+            }, 200);
+
+            // Update Pagination Dot Indicators
+            const dots = document.querySelectorAll('.dot-btn');
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.className = 'dot-btn w-2.5 h-2.5 rounded-full bg-brand-blue transition-all duration-300';
+                } else {
+                    dot.className = 'dot-btn w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateSlideUI();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideUI();
+        }
+
+        // Developer Tool: Custom Image Applicator
+        function applyCustomImage() {
+            const inputVal = document.getElementById('customImgUrl').value.trim();
+            if (inputVal) {
+                slides[0].image = inputVal;
+                if (currentSlide === 0) {
+                    document.getElementById('productImage').src = inputVal;
+                } else {
+                    goToSlide(0);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
