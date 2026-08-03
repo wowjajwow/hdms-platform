@@ -1,6 +1,6 @@
 export const navigation = [
   { label: "통합 인프라", href: "/#infrastructure" },
-  { label: "제품 소개", href: "/#product" },
+  { label: "제품 소개", href: "/product" },
   {
     label: "AI Service",
     href: "/ai-service",
