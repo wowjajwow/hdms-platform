@@ -19,6 +19,8 @@ export function Header() {
   }, []);
 
   const hasSolidBackground = isScrolled || isMobileMenuOpen;
+  const transparentText = "text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)] hover:text-blue-200";
+  const solidText = "text-zinc-600 hover:text-[#0047ba]";
 
   return (
     <header className="relative w-full">
@@ -32,38 +34,50 @@ export function Header() {
       >
         <div className="flex h-full w-full items-center justify-between px-5 md:px-16">
           <Link href="/" aria-label="HDMS 홈" onClick={() => setIsMobileMenuOpen(false)}>
-            <Image
-              src="/logo/HDMS_logo.png"
-              alt="HDMS"
-              width={160}
-              height={36}
-              priority
-            />
+            <Image src="/logo/HDMS_logo.png" alt="HDMS" width={160} height={36} priority />
           </Link>
 
           <ul className="hidden items-center gap-8 md:flex">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`text-lg font-medium leading-7 transition-colors duration-300 ${
-                    isScrolled
-                      ? "text-zinc-600 hover:text-[#0047ba]"
-                      : "text-black hover:text-[#0047ba]"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navigation.map((item) => {
+              const linkClass = `text-lg font-medium leading-7 transition-colors duration-300 ${
+                isScrolled ? solidText : transparentText
+              }`;
+
+              if ("children" in item) {
+                return (
+                  <li key={item.href} className="group relative py-9">
+                    <Link href={item.href} className={linkClass}>
+                      {item.label}
+                    </Link>
+                    <div className="invisible absolute left-1/2 top-full min-w-48 -translate-x-1/2 translate-y-2 border border-zinc-200 bg-white/96 py-2 opacity-0 shadow-xl backdrop-blur-md transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-5 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-blue-50 hover:text-[#0047ba]"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <button
             type="button"
             className={`rounded-md p-2 transition-colors md:hidden ${
-              hasSolidBackground
-                ? "text-black hover:text-[#0047ba]"
-                : "text-black hover:text-[#0047ba]"
+              hasSolidBackground ? "text-black hover:text-[#0047ba]" : transparentText
             }`}
             aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
             aria-expanded={isMobileMenuOpen}
@@ -81,10 +95,7 @@ export function Header() {
         </div>
 
         {isMobileMenuOpen && (
-          <div
-            id="mobile-navigation"
-            className="w-full border-b border-zinc-200 bg-white px-6 py-5 text-zinc-950 shadow-xl md:hidden"
-          >
+          <div id="mobile-navigation" className="w-full border-b border-zinc-200 bg-white px-6 py-5 text-zinc-950 shadow-xl md:hidden">
             <ul className="flex flex-col">
               {navigation.map((item) => (
                 <li key={item.href} className="border-b border-zinc-100 last:border-0">
@@ -95,6 +106,20 @@ export function Header() {
                   >
                     {item.label}
                   </Link>
+                  {"children" in item && (
+                    <div className="pb-3 pl-4">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block py-2 text-sm font-semibold text-zinc-500 transition-colors hover:text-blue-700"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
