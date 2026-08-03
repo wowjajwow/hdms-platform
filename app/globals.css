@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css");
 @import "tailwindcss";
 
 :root {
@@ -8,7 +9,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: Arial, "Noto Sans KR", sans-serif;
+  --font-sans: "Pretendard Variable", Pretendard, Arial, "Noto Sans KR", sans-serif;
   --font-mono: Consolas, monospace;
 }
 
@@ -60,9 +61,184 @@ a {
   animation: hero-product-enter 1100ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.company-image-stage {
+  isolation: isolate;
+}
+
+.company-image-stage::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: "";
+  background:
+    radial-gradient(circle at 22% 28%, rgba(96, 165, 250, 0.22), transparent 30%),
+    radial-gradient(circle at 78% 46%, rgba(14, 165, 233, 0.18), transparent 26%);
+  mix-blend-mode: screen;
+  opacity: 0.68;
+}
+
+.company-rebuild-image {
+  transform-origin: center;
+  transform: scale(1.015);
+}
+
+
+.company-text-rise {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  animation: company-text-rise-cycle 5s cubic-bezier(0.22, 1, 0.36, 1) infinite both;
+  will-change: opacity, transform;
+}
+
+.company-text-rise--1 {
+  animation-delay: 0ms;
+}
+
+.company-text-rise--2 {
+  animation-delay: 140ms;
+}
+
+.company-text-rise--3 {
+  animation-delay: 280ms;
+}
+
+.company-text-rise--4 {
+  animation-delay: 420ms;
+}
+
+@keyframes company-text-rise-cycle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  12%,
+  82% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+}
+.company-energy-ring {
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+  right: clamp(0.25rem, 2.5vw, 3.5rem);
+  top: clamp(3.125rem, calc(10vh - 50px), 5.375rem);
+  width: clamp(370px, calc(50vw + 30px), 950px);
+  aspect-ratio: 3 / 1;
+  opacity: 1;
+  transform: rotate(-8deg) perspective(900px) rotateX(58deg);
+  transform-origin: center;
+}
+
+.company-energy-ring__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.company-energy-ring__base,
+.company-energy-ring__afterglow,
+.company-energy-ring__spark {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.company-energy-ring__base {
+  stroke: rgba(254, 240, 138, 0.42);
+  stroke-width: 1.25;
+}
+
+.company-energy-ring__base--back {
+  opacity: 0.92;
+  stroke-dasharray: 500 500;
+  stroke-dashoffset: 0;
+}
+
+.company-energy-ring__base--front {
+  opacity: 0.82;
+  stroke: rgba(255, 247, 214, 0.72);
+  stroke-dasharray: 500 500;
+  stroke-dashoffset: 500;
+  filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.78));
+}
+
+.company-energy-ring__afterglow,
+.company-energy-ring__spark {
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  animation: company-energy-flow 5s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.company-energy-ring__afterglow--long {
+  stroke: rgba(255, 214, 64, 0.9);
+  stroke-width: 10;
+  stroke-dasharray: 320 680;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 1));
+}
+
+.company-energy-ring__afterglow--short {
+  stroke: url(#companyEnergyTail);
+  stroke-width: 7;
+  stroke-dasharray: 220 780;
+  animation-duration: 5s; /* 링 한 바퀴 속도: 이 값을 4s~6s 사이에서 조절하세요. */
+  filter: drop-shadow(0 0 6px rgba(250, 204, 21, 1));
+}
+
+.company-energy-ring__spark {
+  stroke: url(#companyEnergyFront);
+  stroke-width: 4.4;
+  stroke-dasharray: 130 870;
+  animation-duration: 5s; /* 메인 도화선 빛 속도: 잔광 레이어와 같은 값이면 끊김 없이 돕니다. */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 1)) drop-shadow(0 0 10px rgba(250, 204, 21, 1));
+}
+
+@keyframes company-energy-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+@media (max-width: 767px) {
+  .company-energy-ring {
+    right: -5rem;
+    top: 4.625rem;
+    width: min(calc(92vw + 30px), 470px);
+    opacity: 0.58;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-copy,
-  .hero-product {
+  .hero-product,
+  .company-energy-ring__afterglow,
+  .company-energy-ring__spark,
+  .company-text-rise {
     animation: none;
+  }
+}
+
+
+
+.motion-curtain {
+  background: #facc15;
+}
+
+
+.power-detail-wipe {
+  transform-origin: center;
+  box-shadow: 0 0 38px rgba(250, 204, 21, 0.36);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .power-detail-wipe {
+    display: none;
   }
 }
