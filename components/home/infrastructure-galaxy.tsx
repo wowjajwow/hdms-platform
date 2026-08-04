@@ -23,23 +23,28 @@ export function InfrastructureGalaxy() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext("2d", { alpha: true });
     if (!context) return;
 
     let frameId = 0;
+    let resizeId = 0;
     let width = 0;
     let height = 0;
     let centerX = 0;
     let centerY = 0;
     let particles: Particle[] = [];
+    let isVisible = true;
+    let isRunning = false;
     const mouse = { x: 0, y: 0, active: false };
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const initialize = () => {
       const rect = canvas.getBoundingClientRect();
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = rect.width * ratio;
-      canvas.height = rect.height * ratio;
+      if (rect.width === 0 || rect.height === 0) return;
+
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.25);
+      canvas.width = Math.floor(rect.width * ratio);
+      canvas.height = Math.floor(rect.height * ratio);
       width = canvas.width;
       height = canvas.height;
       centerX = width / 2;
@@ -47,7 +52,7 @@ export function InfrastructureGalaxy() {
 
       const maxRadius = Math.min(width, height) * 0.49;
       const minRadius = Math.min(width, height) * 0.27;
-      const count = rect.width >= 1200 ? 5000 : rect.width >= 700 ? 3200 : 1800;
+      const count = rect.width >= 1200 ? 2200 : rect.width >= 700 ? 1500 : 850;
 
       particles = Array.from({ length: count }, () => {
         const radius = minRadius + Math.pow(Math.random(), 1.2) * (maxRadius - minRadius);
@@ -56,26 +61,31 @@ export function InfrastructureGalaxy() {
         const angle = isArm
           ? armAngle + radius * 0.0075 + (Math.random() - 0.5) * (0.35 + (radius / maxRadius) * 0.55)
           : Math.random() * Math.PI * 2;
-        const isBright = Math.random() < 0.06;
+        const isBright = Math.random() < 0.05;
 
         return {
           angle,
           baseRadius: radius,
           radius,
-          speed: (0.00035 + (1 - radius / maxRadius) * 0.00075) * (Math.random() * 0.3 + 0.85),
-          size: isBright ? Math.random() * 1.2 + 1.6 : Math.random() * 0.8 + 0.4,
-          baseAlpha: Math.random() * 0.55 + 0.18,
+          speed: (0.00028 + (1 - radius / maxRadius) * 0.00055) * (Math.random() * 0.3 + 0.85),
+          size: isBright ? Math.random() * 1 + 1.35 : Math.random() * 0.65 + 0.35,
+          baseAlpha: Math.random() * 0.48 + 0.16,
           phase: Math.random() * Math.PI * 2,
-          twinkleSpeed: Math.random() * 0.025 + 0.008,
+          twinkleSpeed: Math.random() * 0.018 + 0.006,
           color: colors[Math.floor(Math.random() * colors.length)],
         };
       });
     };
 
     const draw = () => {
+      if (!isVisible) {
+        isRunning = false;
+        return;
+      }
+
       context.clearRect(0, 0, width, height);
 
-      particles.forEach((particle) => {
+      for (const particle of particles) {
         if (!reduceMotion) {
           particle.angle += particle.speed;
           particle.phase += particle.twinkleSpeed;
@@ -86,25 +96,37 @@ export function InfrastructureGalaxy() {
 
         if (mouse.active) {
           const distance = Math.hypot(mouse.x - x, mouse.y - y);
-          const target = distance < 180 ? particle.baseRadius + (180 - distance) * 0.02 : particle.baseRadius;
-          particle.radius += (target - particle.radius) * 0.02;
+          const target = distance < 150 ? particle.baseRadius + (150 - distance) * 0.016 : particle.baseRadius;
+          particle.radius += (target - particle.radius) * 0.018;
         } else {
-          particle.radius += (particle.baseRadius - particle.radius) * 0.02;
+          particle.radius += (particle.baseRadius - particle.radius) * 0.018;
         }
 
-        const alpha = Math.max(0.12, Math.min(0.85, particle.baseAlpha + Math.sin(particle.phase) * 0.22));
+        const alpha = Math.max(0.1, Math.min(0.76, particle.baseAlpha + Math.sin(particle.phase) * 0.18));
         context.beginPath();
         context.arc(x, y, particle.size, 0, Math.PI * 2);
         context.fillStyle = particle.color;
         context.globalAlpha = alpha;
         context.fill();
-      });
+      }
 
       context.globalAlpha = 1;
-      if (!reduceMotion) frameId = requestAnimationFrame(draw);
+
+      if (reduceMotion) {
+        isRunning = false;
+        return;
+      }
+
+      frameId = requestAnimationFrame(draw);
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const start = () => {
+      if (isRunning || reduceMotion) return;
+      isRunning = true;
+      frameId = requestAnimationFrame(draw);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const ratio = canvas.width / rect.width;
       mouse.x = (event.clientX - rect.left) * ratio;
@@ -112,21 +134,43 @@ export function InfrastructureGalaxy() {
       mouse.active = true;
     };
 
-    const handleMouseLeave = () => {
+    const handlePointerLeave = () => {
       mouse.active = false;
     };
 
+    const handleResize = () => {
+      window.clearTimeout(resizeId);
+      resizeId = window.setTimeout(() => {
+        initialize();
+        if (reduceMotion) draw();
+      }, 160);
+    };
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) start();
+        else cancelAnimationFrame(frameId);
+      },
+      { rootMargin: "160px" },
+    );
+
     initialize();
     draw();
-    window.addEventListener("resize", initialize);
-    window.addEventListener("mousemove", handleMouseMove);
-    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
+    if (!reduceMotion) start();
+
+    visibilityObserver.observe(canvas);
+    canvas.addEventListener("pointermove", handlePointerMove, { passive: true });
+    canvas.addEventListener("pointerleave", handlePointerLeave);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", initialize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
+      window.clearTimeout(resizeId);
+      visibilityObserver.disconnect();
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
