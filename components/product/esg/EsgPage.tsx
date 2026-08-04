@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { InfrastructureGalaxy } from "@/components/home/infrastructure-galaxy";
 
 const cards = [
   {
@@ -83,9 +82,6 @@ export function EsgPage() {
       </section>
 
       <section id="esg-showcase" className="esg-showcase relative min-h-[112svh] overflow-hidden px-6 py-24 text-white md:px-10 lg:py-28">
-        <div aria-hidden="true" className="esg-showcase-galaxy absolute left-1/2 top-1/2 z-0 size-[1150px] -translate-x-1/2 -translate-y-1/2 sm:size-[1450px] lg:size-[1900px]">
-          <InfrastructureGalaxy />
-        </div>
         <div aria-hidden="true" className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.72),rgba(238,242,248,0.78)_30%,rgba(238,242,248,0.96)_66%),linear-gradient(180deg,rgba(238,242,248,0.94),rgba(248,250,252,0.98))]" />
         <div aria-hidden="true" className="absolute inset-0 z-0 opacity-70 [background-image:linear-gradient(to_right,rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:56px_56px]" />
 
@@ -134,9 +130,6 @@ export function EsgPage() {
       </section>
 
       <section className="esg-process-section relative overflow-hidden bg-[#eef2f8] px-6 py-24 md:px-10 lg:py-32">
-        <div aria-hidden="true" className="esg-process-galaxy absolute left-1/2 top-1/2 z-0 size-[1100px] -translate-x-1/2 -translate-y-1/2 sm:size-[1450px] lg:size-[1850px]">
-          <InfrastructureGalaxy />
-        </div>
         <div aria-hidden="true" className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.58),rgba(238,242,248,0.82)_34%,rgba(238,242,248,0.98)_72%)]" />
 
         <div className="relative z-10 mx-auto max-w-7xl">
