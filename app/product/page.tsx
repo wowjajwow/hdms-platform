@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description: "HDMS의 AI 데이터센터 및 모듈러 데이터센터 제품을 소개합니다.",
 };
 
+
 export default function ProductPage() {
   return (
     <>

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import { PublicCloudCanvas } from "@/components/ai-service/public-cloud/PublicCloudCanvas";
 
 const policyBlocks = [
   ["01", "Public Cloud Readiness", "공공기관의 보안, 규정, 업무 연속성 기준에 맞춰 클라우드 전환 준비도를 진단합니다."],
@@ -44,11 +43,11 @@ export function PublicCloudPage() {
   return (
     <div className="public-cloud-page relative overflow-hidden bg-[#eef2f8] text-slate-950">
       <div aria-hidden="true" className="public-cloud-fixed-bg fixed inset-0 z-0">
-        <div className="absolute inset-0 opacity-75">
-          <PublicCloudCanvas />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_28%,rgba(255,255,255,0.66),rgba(238,242,248,0.86)_34%,rgba(238,242,248,0.98)_72%),linear-gradient(180deg,rgba(248,250,252,0.95),rgba(238,242,248,0.98))]" />
-        <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:56px_56px]" />
+        <div className="absolute inset-0 bg-[#f8fafc]" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-[15%] top-[5%] h-[80%] w-[75%] rounded-full bg-blue-200/40 blur-[140px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-[20%] size-[600px] rounded-full bg-cyan-100/60 blur-[140px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-[15%] select-none overflow-hidden whitespace-nowrap text-center text-[22vw] font-black leading-none tracking-normal text-slate-900/[0.025]">HDMS</div>
       </div>
 
       <main className="relative z-10">

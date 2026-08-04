@@ -33,8 +33,12 @@ const detailSections = [
 
 export function InfrastructureDetailSections() {
   return (
-    <section className="relative overflow-hidden bg-[#eef2f8] px-5 py-24 text-slate-950 sm:px-8 lg:py-32">
-      <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:linear-gradient(to_right,rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:56px_56px]" />
+    <section className="relative overflow-hidden bg-[#f8fafc] px-5 py-24 text-slate-950 sm:px-8 lg:py-32">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#f8fafc]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[15%] top-[5%] h-[80%] w-[75%] rounded-full bg-blue-200/40 blur-[140px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-[20%] size-[600px] rounded-full bg-cyan-100/60 blur-[140px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-[15%] select-none overflow-hidden whitespace-nowrap text-center text-[22vw] font-black leading-none tracking-normal text-slate-900/[0.025]">HDMS</div>
 
       <div className="relative mx-auto max-w-7xl">
         <div className="max-w-3xl">
