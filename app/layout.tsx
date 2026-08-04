@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { CustomCursor } from "@/components/layout/custom-cursor";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ko">
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <CustomCursor />
         <Header />
         <main>{children}</main>
         <Footer />
