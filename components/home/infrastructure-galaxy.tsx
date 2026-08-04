@@ -24,7 +24,7 @@ const colors = ["#0f172a", "#0a2540", "#1e1b4b", "#091e3a", "#1e293b", "#031b4e"
 
 function getParticleCount(width: number, density: "normal" | "low") {
   if (density === "low") return width >= 1200 ? 760 : width >= 700 ? 560 : 340;
-  return width >= 1200 ? 2200 : width >= 700 ? 1500 : 850;
+  return width >= 1200 ? 4000 : width >= 700 ? 2800 : 1500;
 }
 
 export function InfrastructureGalaxy({ density = "normal", interactive = true, className = "size-full" }: InfrastructureGalaxyProps) {
@@ -168,8 +168,8 @@ export function InfrastructureGalaxy({ density = "normal", interactive = true, c
     );
 
     initialize();
-    draw();
-    if (!reduceMotion) start();
+    if (reduceMotion) draw();
+    else start();
 
     visibilityObserver.observe(canvas);
     if (interactive) {
