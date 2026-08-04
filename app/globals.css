@@ -1401,3 +1401,82 @@ a {
     animation: none;
   }
 }
+
+.ai-circuit-card {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  border: 1px solid rgba(13, 82, 206, 0.2);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(239, 246, 255, 0.54)),
+    linear-gradient(90deg, rgba(13, 82, 206, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(13, 82, 206, 0.06) 1px, transparent 1px);
+  background-size: auto, 36px 36px, 36px 36px;
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 360ms ease, border-color 360ms ease, filter 360ms ease;
+}
+
+.ai-circuit-card::before,
+.ai-circuit-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.ai-circuit-card::before {
+  inset: 14px;
+  border-top: 1px solid rgba(13, 82, 206, 0.22);
+  border-left: 1px solid rgba(13, 82, 206, 0.16);
+  clip-path: polygon(0 0, 74% 0, 74% 1px, 0 1px, 1px 1px, 1px 100%, 0 100%);
+}
+
+.ai-circuit-card::after {
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 1px;
+  background: #0d52ce;
+  box-shadow: -18px -18px 0 rgba(13, 82, 206, 0.32), -36px -36px 0 rgba(13, 82, 206, 0.18);
+  opacity: 0.72;
+}
+
+.ai-circuit-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(13, 82, 206, 0.42);
+  filter: drop-shadow(0 18px 30px rgba(13, 82, 206, 0.14));
+}
+
+.ai-circuit-card span {
+  display: inline-grid;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid rgba(13, 82, 206, 0.24);
+  color: #0d52ce;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.ai-circuit-card strong {
+  display: block;
+  margin-top: 1.5rem;
+  color: #102163;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-weight: 750;
+  line-height: 1.16;
+}
+
+.ai-circuit-card p {
+  margin-top: 1rem;
+  color: #475569;
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-circuit-card {
+    transition: none;
+  }
+}

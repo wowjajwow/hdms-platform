@@ -1,131 +1,142 @@
+﻿"use client";
+
 import Image from "next/image";
-import { challenges, features, offers, policyDrivers } from "@/components/ai-service/public-cloud/public-cloud-data";
+import { useEffect } from "react";
+import { InfrastructureGalaxy } from "@/components/home/infrastructure-galaxy";
+
+const policyBlocks = [
+  ["01", "Public Cloud Readiness", "공공기관의 보안, 규정, 업무 연속성 기준에 맞춰 클라우드 전환 준비도를 진단합니다."],
+  ["02", "Migration Roadmap", "업무 중요도와 시스템 의존성을 기준으로 단계별 전환 순서와 실행 계획을 수립합니다."],
+  ["03", "Hybrid Governance", "공공 클라우드와 민간 클라우드가 함께 운영되는 환경의 관리 기준을 설계합니다."],
+  ["04", "Managed Security", "접근 통제, 데이터 보호, 취약점 점검, 운영 감사까지 관리 가능한 보안 체계를 만듭니다."],
+] as const;
+
+const offerCards = [
+  { title: "전환 컨설팅", body: "현황 분석, 목표 구조 정의, 예산과 일정에 맞춘 전환 전략을 제공합니다." },
+  { title: "구축 및 마이그레이션", body: "서비스 영향도를 낮추는 방식으로 클라우드 환경 구축과 이전을 수행합니다." },
+  { title: "운영 관리", body: "모니터링, 장애 대응, 비용 관리, 성능 최적화를 하나의 운영 체계로 연결합니다." },
+  { title: "보안 강화", body: "공공 부문 기준에 맞춘 보안 설계와 지속적인 점검 프로세스를 제공합니다." },
+  { title: "비용 최적화", body: "사용량과 자원 배치를 분석해 전환 이후 운영 비용을 꾸준히 관리합니다." },
+] as const;
+
+const challengeRows = [
+  ["Legacy Systems", "기존 시스템의 구조와 연계 관계를 분석해 안전한 전환 범위를 정합니다."],
+  ["Compliance", "공공 보안 기준과 업무 규정을 반영한 클라우드 운영 체계를 설계합니다."],
+  ["New Workloads", "AI, 빅데이터, IoT 등 신규 서비스를 수용할 수 있는 확장 구조를 준비합니다."],
+] as const;
 
 export function PublicCloudPage() {
+  useEffect(() => {
+    const targets = document.querySelectorAll<HTMLElement>("[data-public-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="bg-white text-slate-950">
-      <section className="relative overflow-hidden bg-slate-950 px-6 pb-24 pt-40 text-white sm:px-10 lg:px-16 xl:px-20">
-        <Image
-          src="/images/ai-service/connectionai.jpg"
-          alt="공공 클라우드 연결 인프라"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-42"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.95)_0%,rgba(2,6,23,0.72)_48%,rgba(2,6,23,0.36)_100%)]" />
-        <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(to_right,rgba(59,130,246,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.1)_1px,transparent_1px)] [background-size:72px_72px]" />
-        <div className="relative z-10 mx-auto max-w-[1400px]">
-          <p className="font-mono text-xs font-semibold uppercase tracking-[0.35em] text-blue-300">AI Service · Public Cloud</p>
-          <h1 className="mt-8 max-w-5xl text-[clamp(2.8rem,6vw,7rem)] font-semibold leading-none tracking-normal">
-            공공 클라우드 전환,
-            <br />
-            컨설팅부터 관리까지
-          </h1>
-          <p className="mt-8 max-w-4xl text-lg leading-9 text-slate-200">
-            공공 기관 및 지자체를 위한 맞춤형 클라우드 전환 설계, 구축, 운영을 지원합니다. 기존 시스템 분석부터 마이그레이션, 관리 서비스, 비용 최적화까지 공공 전담 컨설팅을 제공합니다.
-          </p>
+    <div className="public-cloud-page relative overflow-hidden bg-[#eef2f8] text-slate-950">
+      <div aria-hidden="true" className="public-cloud-fixed-bg fixed inset-0 z-0">
+        <div className="absolute left-1/2 top-1/2 size-[1100px] -translate-x-1/2 -translate-y-1/2 opacity-80 sm:size-[1450px] lg:size-[1900px]">
+          <InfrastructureGalaxy density="low" interactive={false} />
         </div>
-      </section>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_28%,rgba(255,255,255,0.66),rgba(238,242,248,0.86)_34%,rgba(238,242,248,0.98)_72%),linear-gradient(180deg,rgba(248,250,252,0.95),rgba(238,242,248,0.98))]" />
+        <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:56px_56px]" />
+      </div>
 
-      <section className="px-6 py-20 sm:px-10 lg:px-16 xl:px-20">
-        <div className="mx-auto grid max-w-[1280px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="relative min-h-[360px] overflow-hidden bg-slate-950 shadow-[0_30px_90px_-60px_rgba(15,23,42,0.9)]">
-            <Image
-              src="/images/ai-service/chipai.jpg"
-              alt="공공 클라우드 AI 기술 기반"
-              fill
-              sizes="(min-width: 1024px) 42vw, 100vw"
-              className="object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 to-transparent" />
-          </div>
-          <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-1">
-            {policyDrivers.map((item) => (
-              <article key={item.title} className="border border-blue-100 bg-blue-50/70 p-7">
-                <p className="font-mono text-xs font-bold tracking-[0.22em] text-[#0047ba]">{item.label}</p>
-                <h2 className="mt-4 text-2xl font-semibold text-slate-950">{item.title}</h2>
-                <p className="mt-4 text-base leading-7 text-slate-600">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-slate-50 px-6 py-24 sm:px-10 lg:px-16 xl:px-20">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="text-center">
-            <p className="mx-auto h-1 w-8 bg-[#0047ba]" />
-            <h2 className="mt-6 text-4xl font-semibold tracking-normal">Customer Challenges</h2>
-            <p className="mx-auto mt-6 max-w-5xl text-base leading-8 text-slate-700">
-              정부는 공공 정보 시스템의 클라우드 전환을 통해 전자정부를 고도화하고 공공 서비스의 디지털화와 주요 공공 데이터 개방을 가속화하고 있습니다.
+      <main className="relative z-10">
+        <section className="npu-section grid min-h-[100svh] items-center gap-14 px-6 pt-32 md:px-10 lg:grid-cols-[0.94fr_1.06fr] lg:px-16 xl:px-20">
+          <div data-public-reveal className="public-cloud-rise max-w-4xl">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.34em] text-blue-700">AI Service · Public Cloud</p>
+            <h1 className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-[#102163] md:text-7xl">
+              공공클라우드 전환,
+              <br />컨설팅부터 관리까지
+            </h1>
+            <p className="mt-8 max-w-4xl text-lg leading-8 text-slate-700 md:text-xl md:leading-9">
+              HDMS는 공공기관과 지자체의 클라우드 전환을 위해 현황 진단, 구조 설계, 마이그레이션, 보안 및 운영 관리를 통합 지원합니다.
             </p>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {challenges.map((challenge) => (
-              <article key={challenge.title} className="bg-white p-8 shadow-sm ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:ring-blue-100">
-                <h3 className="text-2xl font-semibold text-[#0047ba]">{challenge.title}</h3>
-                <p className="mt-5 text-base leading-8 text-slate-700">{challenge.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="bg-slate-950 px-6 py-24 text-white sm:px-10 lg:px-16 xl:px-20">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-            <div>
-              <p className="h-1 w-8 bg-blue-400" />
-              <h2 className="mt-6 text-4xl font-semibold tracking-normal">Our Offers</h2>
-            </div>
-            <p className="max-w-5xl text-base leading-8 text-slate-300">
-              행정 기관과 지자체를 위한 공공 특화 통합 방법론을 토대로 인프라 및 플랫폼 설계, 시스템 구축, 클라우드 관리, 보안, 비용 최적화 서비스를 제공합니다.
-            </p>
+          <div data-public-reveal className="public-cloud-rise npu-hero-visual">
+            <Image src="/images/ai-service/connectionai.jpg" alt="공공클라우드 연결 인프라" fill priority sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" />
+            <div aria-hidden="true" className="npu-network-light" />
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-            {offers.map((offer, index) => (
-              <article key={offer.title} className="border border-white/10 bg-white/[0.04] p-6">
-                <p className="font-mono text-xs font-bold text-blue-300">0{index + 1}</p>
-                <h3 className="mt-4 text-xl font-semibold text-white">{offer.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{offer.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="px-6 py-24 sm:px-10 lg:px-16 xl:px-20">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-            <div>
-              <p className="h-1 w-8 bg-[#0047ba]" />
-              <h2 className="mt-6 text-4xl font-semibold tracking-normal">Key Features</h2>
-              <p className="mt-6 max-w-4xl text-base leading-8 text-slate-700">
-                공공 클라우드 설계·구축·관리 경험과 AI, 빅데이터 기술 인력을 통해 공공 부문의 디지털 전환을 가속합니다.
-              </p>
+        <section className="npu-section px-6 py-24 md:px-10 lg:px-16 lg:py-32 xl:px-20">
+          <div className="mx-auto max-w-7xl">
+            <div data-public-reveal className="public-cloud-rise max-w-4xl">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">Public Cloud Framework</p>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">정책, 보안, 운영을 각진 블록으로 구조화합니다</h2>
             </div>
-            <div className="relative min-h-[320px] overflow-hidden bg-slate-950">
-              <Image
-                src="/images/ai-service/keyAi.jpg"
-                alt="공공 클라우드 핵심 기능"
-                fill
-                sizes="(min-width: 1024px) 38vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 to-transparent" />
+
+            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {policyBlocks.map(([label, title, body], index) => (
+                <article key={title} data-public-reveal className="public-cloud-rise ai-circuit-card" style={{ transitionDelay: `${index * 90}ms` }}>
+                  <span>{label}</span>
+                  <strong>{title}</strong>
+                  <p>{body}</p>
+                </article>
+              ))}
             </div>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {features.map((feature) => (
-              <article key={feature.title} className="bg-slate-50 p-8 ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:bg-blue-50/60 hover:ring-blue-100">
-                <h3 className="text-2xl font-semibold text-[#0047ba]">{feature.title}</h3>
-                <p className="mt-5 text-base leading-8 text-slate-700">{feature.body}</p>
-              </article>
-            ))}
+        </section>
+
+        <section className="npu-section px-6 py-24 md:px-10 lg:px-16 lg:py-32 xl:px-20">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div data-public-reveal className="public-cloud-rise npu-hero-visual min-h-[420px]">
+              <Image src="/images/ai-service/infraimg.jpg" alt="공공클라우드 운영 인프라" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+              <div aria-hidden="true" className="npu-network-line" />
+            </div>
+            <div data-public-reveal className="public-cloud-rise">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">Customer Challenges</p>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">공공 전환 과제를 실행 단위로 나눕니다</h2>
+              <div className="mt-10 grid gap-7">
+                {challengeRows.map(([title, body]) => (
+                  <article key={title} className="public-cloud-line-item">
+                    <span>↳</span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{body}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="public-cloud-invert relative overflow-hidden px-6 py-24 text-white md:px-10 lg:px-16 lg:py-32 xl:px-20">
+          <div aria-hidden="true" className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_38%,rgba(0,71,186,0.22),rgba(3,11,23,0.9)_42%,rgba(3,11,23,0.98)),linear-gradient(180deg,rgba(3,11,23,0.96),rgba(3,11,23,0.92))]" />
+          <div aria-hidden="true" className="absolute inset-0 z-0 opacity-35 [background-image:linear-gradient(to_right,rgba(96,165,250,0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(96,165,250,0.14)_1px,transparent_1px)] [background-size:64px_64px]" />
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <div data-public-reveal className="public-cloud-rise grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+              <div>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-200">Our Offers</p>
+                <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">공공 특화 클라우드 서비스</h2>
+              </div>
+              <p className="text-lg leading-8 text-slate-300">전환 전략부터 구축, 운영, 보안, 비용 최적화까지 공공 서비스 운영에 필요한 항목을 한 흐름으로 제공합니다.</p>
+            </div>
+
+            <div data-public-reveal className="public-cloud-rise public-cloud-offer-flow mt-16">
+              {offerCards.map((offer, index) => (
+                <article key={offer.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{offer.title}</h3>
+                  <p>{offer.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
