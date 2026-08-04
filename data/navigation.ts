@@ -18,5 +18,4 @@ export const navigation = [
       { label: "공공 클라우드", href: "/ai-service/public-cloud" },
     ],
   },
-  { label: "문의", href: "/#contact" },
 ] as const;
