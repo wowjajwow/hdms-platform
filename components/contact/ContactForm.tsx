@@ -46,7 +46,7 @@ export function ContactForm() {
         <label className="text-sm font-semibold text-slate-700 sm:col-span-2">문의 분야 <span className="text-[#0d52ce]">*</span>
           <select className={fieldClass} name="category" required defaultValue="">
             <option value="" disabled>문의 분야를 선택해 주세요</option>
-            <option>MDC / 데이터센터</option><option>통합 인프라</option><option>ESG</option><option>NPU</option><option>엔비디아 공급</option><option>AI Service</option><option>Public Cloud</option><option>기타 / 제휴</option>
+            <option>MDC / 데이터센터</option><option>통합 인프라</option><option>환경 & 사회 & 체계</option><option>AI 인프라</option><option>NPU</option><option>GPU</option><option>AI Service</option><option>Public Cloud</option><option>기타 / 제휴</option>
           </select>
         </label>
         <label className="text-sm font-semibold text-slate-700 sm:col-span-2">문의 제목 <span className="text-[#0d52ce]">*</span><input className={fieldClass} name="subject" required maxLength={150} placeholder="문의 제목을 입력해 주세요" /></label>

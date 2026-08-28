@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CompanyIntroductionVideo } from "@/components/company/CompanyIntroductionVideo";
 
 export const metadata: Metadata = {
   title: "회사소개",
@@ -40,6 +41,8 @@ export default function CompanyPage() {
           </div>
         </div>
       </section>
+
+      <CompanyIntroductionVideo />
 
       <section className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1500px]">

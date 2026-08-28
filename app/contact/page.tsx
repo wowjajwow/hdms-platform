@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "문의하기",
@@ -15,7 +16,7 @@ export default function ContactPage() {
           <p className="font-mono text-xs font-bold tracking-[0.24em] text-blue-300">CONTACT HDMS</p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-6xl">비즈니스의 다음 단계를<br />함께 설계합니다.</h1>
           <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            데이터센터 구축, MDC, ESG, NPU, 클라우드 및 AI 서비스에 대한 문의를 남겨주세요.
+            데이터센터 구축, 지속가능경영, AI 인프라, NPU, GPU, 클라우드 및 AI 서비스에 대한 문의를 남겨주세요.
             담당자가 내용을 확인한 뒤 입력하신 연락처로 답변드리겠습니다.
           </p>
         </div>
@@ -29,6 +30,10 @@ export default function ContactPage() {
           <div className="mt-10 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-500">
             <p className="font-semibold text-slate-900">문의 처리 안내</p>
             <p className="mt-2">접수된 내용은 HDMS 담당자에게 이메일로 전달되며, 답변을 위한 용도로만 사용됩니다.</p>
+          </div>
+          <div className="mt-8 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-500">
+            <p className="font-semibold text-slate-900">HDMS 소재지</p>
+            <address className="mt-2 not-italic">{siteConfig.address}</address>
           </div>
         </aside>
         <ContactForm />
