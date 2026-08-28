@@ -29,9 +29,9 @@ const historyItems = [
 
 const groupCompanies = [
   { name: "동미전기공업", role: "변압기", mark: "01" },
-  { name: "에스씨에스", role: "냉각·열관리시스템", mark: "02" },
+  { name: "에스씨에스", role: "인수 절차 중", mark: "02" },
   { name: "동미전기뉴펙토리", role: "초고압·특수 변압기", mark: "03" },
-  { name: "유비넷시스", role: "ESS", mark: "04" },
+  { name: "유비넷시스", role: "인수 절차 중", mark: "04" },
   { name: "R&D센터", role: "통합연구개발", mark: "05" },
 ];
 

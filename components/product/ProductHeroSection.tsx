@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export function ProductHeroSection() {
   return (
@@ -23,12 +22,6 @@ export function ProductHeroSection() {
 
           <p className="mt-7 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">반세기의 전력 기술로 AI 데이터센터의 미래를 설계합니다.</p>
 
-          <div className="mt-9">
-            <Link href="/#infrastructure" className="group inline-flex items-center gap-4 rounded-full bg-slate-950 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(15,23,42,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0047ba] hover:shadow-[0_16px_35px_-12px_rgba(0,71,186,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0047ba] focus-visible:ring-offset-2 sm:text-base">
-              HDMS 알아보기
-              <svg aria-hidden="true" className="size-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-5-5 5 5-5 5" /></svg>
-            </Link>
-          </div>
         </div>
 
         <div className="hero-product relative z-10 mt-10 min-h-[300px] w-full sm:min-h-[430px] lg:absolute lg:-right-[10%] lg:bottom-[4%] lg:mt-0 lg:h-[78%] lg:w-[76%] xl:-right-[8%] xl:w-[72%]">

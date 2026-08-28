@@ -6,7 +6,7 @@ import { useState } from "react";
 import { navigation } from "@/data/navigation";
 
 const businessLinks = [
-  { label: "HDMS", href: "/" },
+  { label: "HDMS", href: "/company" },
   { label: "인프라 부문", href: "/infrastructure" },
   { label: "클라우드 부문", href: "/ai-service/public-cloud" },
   { label: "AI 부문", href: "/ai-service" },
@@ -81,10 +81,10 @@ export function Header() {
             </ul>
 
             <div className="ml-auto hidden shrink-0 items-center gap-3 md:flex">
-              <Link href="/#contact" className="rounded-full bg-zinc-100 px-7 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#0646a5] hover:text-white">
+              <a href="/contact" className="rounded-full bg-zinc-100 px-7 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#0646a5] hover:text-white">
                 CONTACT US
-              </Link>
-              <Link href="/product" aria-label="검색" className="grid size-11 place-items-center rounded-full bg-zinc-100 text-zinc-950 transition-colors hover:bg-zinc-200">
+              </a>
+              <Link href="/product/mdc" aria-label="검색" className="grid size-11 place-items-center rounded-full bg-zinc-100 text-zinc-950 transition-colors hover:bg-zinc-200">
                 <SearchIcon />
               </Link>
             </div>
@@ -107,7 +107,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Link href="/#contact" onClick={closeMobileMenu} className="mt-5 block rounded-full bg-[#0646a5] py-3 text-center text-sm font-semibold text-white">CONTACT US</Link>
+            <a href="/contact" className="mt-5 block rounded-full bg-[#0646a5] py-3 text-center text-sm font-semibold text-white">CONTACT US</a>
           </div>
         )}
       </nav>

@@ -5,13 +5,30 @@ import { useEffect, useState } from "react";
 
 // 텍스트 애니메이션이 끝나는 즉시 커튼 슬라이드를 시작합니다.
 const INTRO_DURATION = 2250;
+let hasPresentedHomeIntro = false;
+
+function isInitialHomeDocument() {
+  if (typeof window === "undefined") {
+    return true;
+  }
+
+  const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+
+  if (!navigation) {
+    return window.location.pathname === "/";
+  }
+
+  return new URL(navigation.name).pathname === "/";
+}
 
 export function HomeIntro() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => !hasPresentedHomeIntro && isInitialHomeDocument());
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (reduceMotion) {
+    hasPresentedHomeIntro = true;
+
+    if (reduceMotion || !isVisible) {
       return;
     }
 
@@ -24,7 +41,7 @@ export function HomeIntro() {
       window.clearTimeout(timer);
       document.body.style.overflow = previousOverflow;
     };
-  }, [reduceMotion]);
+  }, [isVisible, reduceMotion]);
 
   useEffect(() => {
     if (!isVisible) {

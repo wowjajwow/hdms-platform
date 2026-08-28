@@ -43,27 +43,45 @@ const powerInfrastructureSlides = [
 export function PowerInfrastructureSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [wipeKey, setWipeKey] = useState(0);
-  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [cycleKey, setCycleKey] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const activeSlide = activeIndex === null ? null : powerInfrastructureSlides[activeIndex];
 
   useEffect(() => {
-    return () => {
-      if (resetTimer.current) clearTimeout(resetTimer.current);
-    };
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
-  const openSlide = (index: number) => {
-    if (resetTimer.current) clearTimeout(resetTimer.current);
+  useEffect(() => {
+    if (!isInView) return;
+
+    const timer = window.setTimeout(() => {
+      const nextIndex = activeIndex === null ? 0 : (activeIndex + 1) % powerInfrastructureSlides.length;
+      setWipeKey((key) => key + 1);
+      setActiveIndex(nextIndex);
+    }, activeIndex === null ? 1200 : 7000);
+
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, cycleKey, isInView]);
+
+  const selectSlide = (index: number) => {
     setWipeKey((key) => key + 1);
     setActiveIndex(index);
-
-    resetTimer.current = setTimeout(() => {
-      setActiveIndex(null);
-    }, 10000);
+    setCycleKey((key) => key + 1);
   };
 
   return (
     <section
+      ref={sectionRef}
       id="power-infrastructure"
       className="relative flex min-h-screen items-center overflow-hidden bg-black px-6 py-20 text-white sm:px-10 lg:px-16 xl:px-20"
     >
@@ -79,12 +97,17 @@ export function PowerInfrastructureSection() {
               <motion.article
                 key={activeSlide.button}
                 className="absolute inset-0 grid grid-rows-[42%_58%] overflow-hidden bg-slate-950"
-                initial={{ opacity: 0, scale: 0.86, y: 28 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                initial={{ scale: 0.96, y: 18 }}
+                animate={{ scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 16 }}
                 transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="relative overflow-hidden">
+                <motion.div
+                  className="relative overflow-hidden"
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.52, duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <Image
                     src={activeSlide.image}
                     alt={activeSlide.imageAlt}
@@ -94,9 +117,14 @@ export function PowerInfrastructureSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-black/10" />
 
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col justify-start px-7 pb-10 pt-8 sm:px-10 sm:pb-32 sm:pt-10 lg:px-14 lg:pb-36 lg:pt-11">
+                <motion.div
+                  className="flex flex-col justify-start px-7 pb-10 pt-8 sm:px-10 sm:pb-32 sm:pt-10 lg:px-14 lg:pb-36 lg:pt-11"
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.62, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
 
                   <h3 className="text-[clamp(2rem,4.2vw,4rem)] font-semibold leading-tight tracking-normal text-white">
                     {activeSlide.title}
@@ -110,7 +138,7 @@ export function PowerInfrastructureSection() {
                   <div className="mt-8 flex flex-wrap gap-3">
 
                   </div>
-                </div>
+                </motion.div>
 
                 <motion.div
                   key={wipeKey}
@@ -147,7 +175,8 @@ export function PowerInfrastructureSection() {
                 <button
                   key={slide.button}
                   type="button"
-                  onClick={() => openSlide(index)}
+                  onClick={() => selectSlide(index)}
+                  aria-pressed={isActive}
                   className={`min-w-40 border px-7 py-4 font-mono text-xs font-bold tracking-[0.22em] transition-all duration-300 ${
                     isActive
                       ? "border-amber-300 bg-amber-300 text-black"
@@ -167,7 +196,8 @@ export function PowerInfrastructureSection() {
               <button
                 key={slide.button}
                 type="button"
-                onClick={() => openSlide(index)}
+                onClick={() => selectSlide(index)}
+                aria-pressed={isActive}
                 className={`min-w-25 border px-5 py-3 font-mono text-[11px] font-bold tracking-[0.18em] transition-all duration-300 ${
                   isActive
                     ? "border-amber-300 bg-amber-300 text-black"

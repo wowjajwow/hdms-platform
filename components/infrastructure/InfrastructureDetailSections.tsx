@@ -42,17 +42,14 @@ export function InfrastructureDetailSections() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="max-w-3xl">
-          <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">02 — Integrated Infrastructure</p>
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">Core Capabilities</p>
           <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] sm:text-6xl">
-            One Heritage.
-            <span className="block">Integrated Infrastructure.</span>
+            전력 기술부터
+            <span className="block">모듈형 AI 데이터센터까지</span>
           </h2>
-          <div className="mt-7 space-y-4 text-base leading-8 text-slate-700 sm:text-lg">
+          <div className="mt-7 text-base leading-8 text-slate-700 sm:text-lg">
             <p>
-              변압기 한 대의 품질이 전체 전력설비의 안정성을 좌우하듯, 데이터센터의 안정성 역시 전력과 냉각 인프라에 대한 깊은 이해에서 시작됩니다.
-            </p>
-            <p>
-              <strong className="font-semibold text-slate-950">HDMS</strong>는 <strong className="font-semibold text-blue-700">50년 이상 축적된 전력설비 기술</strong>을 기반으로 변압기, ESS, 냉각 시스템, 통합연구개발을 통해 <strong className="font-semibold text-blue-700">AI 토탈 전력 인프라 솔루션</strong>을 제공합니다.
+              검증된 전력 공급 역량과 빠르게 구축하고 유연하게 확장할 수 있는 모듈형 데이터센터 기술로 AI 인프라의 핵심 기반을 완성합니다.
             </p>
           </div>
         </div>

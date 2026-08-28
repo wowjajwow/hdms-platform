@@ -1,10 +1,11 @@
 export const navigation = [
+  { label: "회사소개", href: "/company" },
   { label: "통합 인프라", href: "/infrastructure" },
   {
     label: "서비스 소개",
-    href: "/product",
+    href: "/product/mdc",
     children: [
-      { label: "제품 소개", href: "/product" },
+      { label: "MDC", href: "/product/mdc" },
       { label: "ESG", href: "/product/esg" },
       { label: "NPU", href: "/product/npu" },
       { label: "엔비디아 공급", href: "/product/nvidia" },

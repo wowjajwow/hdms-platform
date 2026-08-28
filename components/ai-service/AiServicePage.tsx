@@ -79,7 +79,7 @@ export function AiServicePage() {
           <div className="mx-auto max-w-7xl">
             <div data-ai-reveal className="ai-service-rise max-w-4xl">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">AI Operating Blocks</p>
-              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">각진 AI 블록으로 정리한 서비스 전환 구조</h2>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">AI 서비스 전환을 완성하는 네 가지 핵심 역량</h2>
             </div>
 
             <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">

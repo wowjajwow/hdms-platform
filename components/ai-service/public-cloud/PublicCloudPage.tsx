@@ -73,7 +73,7 @@ export function PublicCloudPage() {
           <div className="mx-auto max-w-7xl">
             <div data-public-reveal className="public-cloud-rise max-w-4xl">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.32em] text-blue-700">Public Cloud Framework</p>
-              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">정책, 보안, 운영을 각진 블록으로 구조화합니다</h2>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#102163] md:text-6xl">공공 클라우드 전환을 위한 네 가지 실행 기준</h2>
             </div>
 
             <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
