@@ -16,7 +16,7 @@ const historyItems = [
   {
     year: "Manufacturing",
     title: "수직적 통합",
-    description: "초고압 변압기, ESS, 냉각기 등 MEP 핵심 요소 생산",
+    description: "ESS, 냉각기 등 MEP 핵심 요소 생산",
     image: "/images/home/변압기2.jpg",
   },
   {
@@ -28,11 +28,10 @@ const historyItems = [
 ];
 
 const groupCompanies = [
-  { name: "동미전기공업", role: "변압기", mark: "01" },
-  { name: "에스씨에스", role: "인수 절차 중", mark: "02" },
-  { name: "동미전기뉴펙토리", role: "초고압·특수 변압기", mark: "03" },
-  { name: "유비넷시스", role: "인수 절차 중", mark: "04" },
-  { name: "R&D센터", role: "통합연구개발", mark: "05" },
+  { name: "HDM ESS", role: "ESS, 익산", mark: "01" },
+  { name: "HDM Place", role: "부동산, 강남", mark: "02" },
+  { name: "동미-HDM팩토리", role: "몰드, 전주", mark: "03" },
+  { name: "HDM Solar", role: "태양광, 전주", mark: "04" },
 ];
 
 export function GroupIntroductionSection() {
@@ -67,7 +66,7 @@ export function GroupIntroductionSection() {
               변압기 한 대의 품질이 전체 전력설비의 안정성을 좌우하듯, 데이터센터의 안정성 역시 전력과 냉각 인프라에 대한 깊은 이해에서 시작됩니다.
             </p>
             <p className="mt-4">
-              HDMS는 50년 이상 축적된 전력설비 기술을 기반으로 초고압 변압기, ESS, 냉각 시스템, 통합연구개발을 결합해 AI 토탈 전력 인프라 솔루션을 제공합니다.
+              HDMS는 50년 이상 축적된 전력설비 기술을 기반으로 ESS, 냉각 시스템, 통합연구개발을 결합해 AI 토탈 전력 인프라 솔루션을 제공합니다.
             </p>
           </div>
         </div>
@@ -111,9 +110,18 @@ export function GroupIntroductionSection() {
             </h3>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mx-auto mt-10 max-w-md bg-[#152a6b] px-8 py-6 text-center text-white">
+            <h4 className="text-2xl font-semibold">HDMS</h4>
+            <p className="mt-2 text-sm text-blue-100">사업·지주, 대외 본체</p>
+          </div>
+          <div aria-hidden="true" className="mx-auto h-10 w-px lg:bg-slate-300" />
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             {groupCompanies.map((company) => (
-              <article key={company.name} className="relative text-center">
+              <article
+                key={company.name}
+                className="relative text-center lg:px-4 lg:pt-10 lg:before:absolute lg:before:inset-x-0 lg:before:top-0 lg:before:h-px lg:before:bg-slate-300 lg:first:before:left-1/2 lg:last:before:right-1/2"
+              >
+                <div aria-hidden="true" className="absolute left-1/2 top-0 hidden h-10 w-px bg-slate-300 lg:block" />
                 <div className="mx-auto flex size-28 items-center justify-center rounded-full bg-[#152a6b] text-white shadow-[0_18px_50px_-25px_rgba(21,42,107,0.8)]">
                   <span className="font-mono text-2xl font-bold tracking-[0.1em]">{company.mark}</span>
                 </div>
