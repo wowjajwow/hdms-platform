@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: {
+      url: "/logo/hdms-h-logo-tight.svg",
+      type: "image/svg+xml",
+      sizes: "any",
+    },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
