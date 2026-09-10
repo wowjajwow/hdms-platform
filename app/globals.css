@@ -1,6 +1,35 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css");
 @import "tailwindcss";
 
+.site-search-dialog::backdrop {
+  background: rgb(15 23 42 / 40%);
+}
+
+/* Keep the native cursor visible above the site's custom cursor in the top layer. */
+html.custom-cursor-active .site-search-dialog {
+  cursor: auto !important;
+}
+
+html.custom-cursor-active .site-search-dialog a,
+html.custom-cursor-active .site-search-dialog button {
+  cursor: pointer !important;
+}
+
+html.custom-cursor-active .site-search-dialog input {
+  cursor: text !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-search-dialog[open] .site-search-panel {
+    animation: search-panel-enter 220ms ease-out;
+  }
+
+  @keyframes search-panel-enter {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

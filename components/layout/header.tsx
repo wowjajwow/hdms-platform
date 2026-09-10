@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { navigation } from "@/data/navigation";
+import { SiteSearch } from "@/components/layout/site-search";
 
 const businessLinks = [
   { label: "HDMS", href: "/company" },
@@ -11,15 +12,6 @@ const businessLinks = [
   { label: "클라우드 부문", href: "/ai-service/public-cloud" },
   { label: "AI 부문", href: "/ai-service" },
 ] as const;
-
-function SearchIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5 fill-none stroke-current" strokeWidth="1.8">
-      <circle cx="10.8" cy="10.8" r="6.6" />
-      <path d="m16 16 4.2 4.2" />
-    </svg>
-  );
-}
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,16 +72,14 @@ export function Header() {
               ))}
             </ul>
 
-            <div className="ml-auto hidden shrink-0 items-center gap-3 md:flex">
-              <a href="/contact" className="rounded-full bg-zinc-100 px-7 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#0646a5] hover:text-white">
+            <div className="ml-auto flex shrink-0 items-center gap-3">
+              <a href="/contact" className="hidden rounded-full bg-zinc-100 px-7 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#0646a5] hover:text-white md:block">
                 CONTACT US
               </a>
-              <Link href="/product/mdc" aria-label="검색" className="grid size-11 place-items-center rounded-full bg-zinc-100 text-zinc-950 transition-colors hover:bg-zinc-200">
-                <SearchIcon />
-              </Link>
+              <SiteSearch onOpen={closeMobileMenu} />
             </div>
 
-            <button type="button" className="ml-auto grid size-10 place-items-center text-zinc-950 md:hidden" aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"} aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation" onClick={() => setIsMobileMenuOpen((open) => !open)}>
+            <button type="button" className="ml-2 grid size-10 place-items-center text-zinc-950 md:hidden" aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"} aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation" onClick={() => setIsMobileMenuOpen((open) => !open)}>
               <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6 fill-current">
                 {isMobileMenuOpen ? <path d="m18.3 4.3-6.3 6.3-6.3-6.3-1.4 1.4 6.3 6.3-6.3 6.3 1.4 1.4 6.3-6.3 6.3 6.3 1.4-1.4-6.3-6.3 6.3-6.3z" /> : <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />}
               </svg>
