@@ -7,7 +7,7 @@ export const searchPages = [
   { title: "통합 인프라", href: "/infrastructure", description: "HDMS의 통합 인프라 솔루션을 소개합니다.", keywords: "네트워크 서버 스토리지 infrastructure" },
   { title: "AI Service", href: "/ai-service", description: "AI 데이터센터 운영과 클라우드 컨설팅을 만나보세요.", keywords: "인공지능 서비스 cloud" },
   { title: "회사 소개", href: "/company", description: "HDMS의 비전과 주요 사업을 소개합니다.", keywords: "에이치디엠에스 기업 회사" },
-  { title: "환경 & 사회 & 체계", href: "/company/sustainability", description: "지속가능한 성장을 위한 HDMS의 방향을 확인하세요.", keywords: "esg 지속가능 환경 사회 체계" },
+  { title: "환경 & 사회 & 지배구조", href: "/company/sustainability", description: "지속가능한 성장을 위한 HDMS의 ESG 경영 방향을 확인하세요.", keywords: "esg 지속가능 환경 사회 지배구조 environment social governance" },
   { title: "문의하기", href: "/contact", description: "솔루션 도입과 사업 협력을 상담하세요.", keywords: "연락 상담 도입 제휴 contact" },
 ] as const;
 

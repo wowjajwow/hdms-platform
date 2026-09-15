@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "환경 & 사회 & 체계",
-  description: "환경 효율, 안전과 상생, 책임 있는 운영 체계를 중심으로 한 HDMS의 지속가능경영 방향을 소개합니다.",
+  title: "ESG | 환경 & 사회 & 지배구조",
+  description: "환경(Environment), 사회(Social), 지배구조(Governance)를 중심으로 한 HDMS의 ESG 경영 방향을 소개합니다.",
 };
 
 const pillars = [
   { key: "E", label: "Environment", title: "환경을 고려한 기술", description: "에너지 효율 향상과 자원 사용 최적화를 인프라 설계와 운영의 중요한 기준으로 삼습니다.", items: ["에너지 효율", "온실가스 저감 방향", "자원순환과 폐기물 관리", "환경 리스크 사전 검토"] },
-  { key: "S", label: "Society", title: "사람과 함께하는 성장", description: "안전한 일터와 책임 있는 협력 관계를 통해 고객, 구성원, 파트너와 지속 가능한 가치를 만듭니다.", items: ["안전·보건", "인권과 다양성 존중", "협력사 상생", "기술과 역량의 공유"] },
-  { key: "S", label: "System", title: "책임을 실행하는 체계", description: "윤리, 정보보안, 품질과 리스크 관리를 사업 과정에 연결해 책임 있는 의사결정의 기반을 마련합니다.", items: ["윤리와 준법", "정보보안", "품질 관리", "리스크 점검과 개선"] },
+  { key: "S", label: "Social", title: "사람과 함께하는 성장", description: "안전한 일터와 책임 있는 협력 관계를 통해 고객, 구성원, 파트너와 지속 가능한 가치를 만듭니다.", items: ["안전·보건", "인권과 다양성 존중", "협력사 상생", "기술과 역량의 공유"] },
+  { key: "G", label: "Governance", title: "책임 있는 지배구조", description: "윤리와 준법, 투명한 의사결정과 리스크 관리를 바탕으로 책임 있는 지배구조를 구축합니다.", items: ["윤리와 준법", "투명한 의사결정", "책임 있는 경영", "리스크 점검과 개선"] },
 ] as const;
 
 const principles = [
@@ -36,7 +36,7 @@ export default function SustainabilityPage() {
         <div className="mx-auto max-w-[1500px]">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div><p className="font-mono text-xs font-bold tracking-[0.26em] text-blue-700">STRATEGY FRAMEWORK</p><h2 className="mt-5 text-4xl font-semibold leading-tight text-[#102163] sm:text-5xl">지속가능한 성장을 위한<br />세 가지 실행 축</h2></div>
-            <p className="max-w-2xl border-t border-slate-300 pt-7 text-lg leading-9 text-slate-600 lg:justify-self-end">환경과 사회에 대한 책임을 사업 운영 체계 안에서 함께 다룰 때 지속가능성은 실제 변화로 이어집니다.</p>
+            <p className="max-w-2xl border-t border-slate-300 pt-7 text-lg leading-9 text-slate-600 lg:justify-self-end">환경(Environment), 사회(Social), 지배구조(Governance)를 중심으로 ESG 경영을 실천하며 지속가능한 성장을 만들어갑니다.</p>
           </div>
           <div className="mt-16 grid gap-5 lg:grid-cols-3">
             {pillars.map((pillar) => (
